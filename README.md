@@ -13,7 +13,7 @@ Is software for Counter Strike Global Offensive with the biggest lua system.
     - [ ] Change the "spec list" text
     - [ ] Move with mouse
 - [X] Custom velocity graph
-~~- [ ] Integration in obs system & "donations reaction"~~ 
+- [ ] ~~Integration in obs system & "donations reaction"~~ 
 
 
 #### Plans
