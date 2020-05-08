@@ -45,3 +45,6 @@ change the volume: rerender all "wav" files from "INTERIUM\\CSGO\\FilesForLUA\\K
 change the sounds: u must open lua in notpad (or smth) and chenge this paths
 
 ![code](https://i.imgur.com/qrpWCFk.png "heh")
+
+
+*page in progress*
