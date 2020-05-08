@@ -4,7 +4,7 @@
 Its software for Counter Strike Global Offensive with the biggest easy lua system. 
 [details...](https://github.com/N1ceL/Interium_LUA_API)
 
-#### Lua list
+#### Lua plan list
 - [X] Hitmarks system from cooking hack
 - [X] Interwebz spec list (need recoded)
 - [ ] Aimware spec list
@@ -17,6 +17,5 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [ ] ~~Integration in obs system & "donations reaction"~~ 
 
 
-#### Plans
 
 soon..
