@@ -1,4 +1,4 @@
-# Interium-luas
+# Interium - luas
 
 #### INTERIUM - is?
 Its software for Counter Strike Global Offensive with the biggest easy lua system. 
