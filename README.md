@@ -38,3 +38,10 @@ Types of images:
 - each kill shown at the bottom of your screen (turned off if desired in the menu)
 
  ![everykill](https://i.imgur.com/3OpYkeh.png "heh")
+ 
+#### Questions 
+-How i can change the sound or volume ?
+change the volume: rerender all "wav" files from "INTERIUM\\CSGO\\FilesForLUA\\KillImage-w3rn3r" with min volume
+change the sounds: u must open lua in notpad (or smth) and chenge this paths
+
+![code](https://i.imgur.com/qrpWCFk.png "heh")
