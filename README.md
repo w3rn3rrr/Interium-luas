@@ -7,12 +7,13 @@ Is software for Counter Strike Global Offensive with the biggest lua system.
 #### Lua list
 - [X] Hitmarks system from cooking hack
 - [X] Interwebz spec list (need recoded)
+- [ ] Aimware spec list
 - [ ] Full customize spec list
     - [ ] Full color customization
     - [ ] Size
     - [ ] Change the "spec list" text
     - [ ] Move with mouse
-- [X] Custom velocity graph
+- [X] Simple Custom velocity graph
 - [ ] ~~Integration in obs system & "donations reaction"~~ 
 
 
