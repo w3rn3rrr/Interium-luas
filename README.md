@@ -24,17 +24,17 @@ In kill time u can see orher images.
 Types of images:
 - Simple kill in body/legs/hands/neck/ (kill added to the main score circle)
 
-![3kills](https://i.imgur.com/036q0Pa.png "heh")
+ ![3kills](https://i.imgur.com/036q0Pa.png "heh")
 - AFter 5 kills (ace) u listen the "WOW" sound)
 
-![ace](https://i.imgur.com/C9zEFaX.png "heh")
+ ![ace](https://i.imgur.com/C9zEFaX.png "heh")
 - Wallbang kill
 
-![wallbang](https://i.imgur.com/OCIAlA3.png "heh")
+ ![wallbang](https://i.imgur.com/OCIAlA3.png "heh")
 - HS image (1st hs - silver skull, second - golden)
 
-![1sths](https://i.imgur.com/Twj9eGO.png "heh")
-![2sths](https://i.imgur.com/kxS7xgi.png "heh")
+ ![1sths](https://i.imgur.com/Twj9eGO.png "heh")
+ ![2sths](https://i.imgur.com/kxS7xgi.png "heh")
 - each kill shown at the bottom of your screen (turned off if desired in the menu)
 
-![everykill](https://i.imgur.com/3OpYkeh.png "heh")
+ ![everykill](https://i.imgur.com/3OpYkeh.png "heh")
