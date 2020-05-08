@@ -11,7 +11,7 @@ Is software for Counter Strike Global Offensive with the biggest lua system.
     - [ ] Full color customization
     - [ ] Size
     - [ ] Change the "spec list" text
-    - [ ] 
+    - [ ] Move with mouse
 - [X] Custom velocity graph
 ~~- [ ] Integration in obs system & "donations reaction"~~ 
 
