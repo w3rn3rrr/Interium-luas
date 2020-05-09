@@ -43,6 +43,7 @@ Types of images:
 #### Questions 
 -How i can change the sound or volume ?
 change the volume: rerender all "wav" files from "INTERIUM\\CSGO\\FilesForLUA\\KillImage-w3rn3r" with min volume
+
 change the sounds: u must open lua in notpad (or smth) and chenge this paths
 
 ![code](https://i.imgur.com/qrpWCFk.png "heh")
