@@ -18,7 +18,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [ ] ~~Integration in obs system & "donations reaction"~~ 
 
 
-### Explanation and help for several 
+### Explanation and help for several "
 
 #### Hitmarks lua
 In kill time u can see orher images. 
@@ -43,7 +43,7 @@ Types of images:
 #### Questions 
 -How i can change the sound or volume ?
 
-change the volume: rerender all "wav" files from **INTERIUM\\CSGO\\FilesForLUA\\KillImage-w3rn3r** with min volume
+change the volume: rerender all "wav" files from **"INTERIUM\\CSGO\\FilesForLUA\\KillImage-w3rn3r"** with min volume
 
 change the sounds: u must open lua in notpad (or smth) and chenge this paths
 
