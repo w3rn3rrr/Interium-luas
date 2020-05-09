@@ -14,6 +14,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
     - [ ] Change the "spec list" text
     - [ ] Move with mouse
 - [X] Simple Custom velocity graph
+- [ ] Health from minectaft (animation) 
 - [ ] ~~Integration in obs system & "donations reaction"~~ 
 
 
