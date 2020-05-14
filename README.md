@@ -16,6 +16,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [X] Simple Custom velocity graph
 - [X] Health from minectaft (animation) (looks ugly)
 - [ ] ~~Integration in obs system & "donations reaction"~~ 
+- [ ] Ui minecraft. 
 
 
 ### Explanation and help for several "
