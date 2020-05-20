@@ -20,7 +20,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [ ] pack presets lua for newbie's =]
 
 
-### Explanation and help for several "
+### Explanation and help for several
 
 #### Hitmarks lua
 In kill time u can see orher images. 
