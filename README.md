@@ -17,6 +17,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [X] Health from minectaft (animation) (looks ugly)
 - [ ] ~~Integration in obs system & "donations reaction"~~ 
 - [ ] Ui minecraft. 
+- [ ] pack presets lua for newbie's =]
 
 
 ### Explanation and help for several "
