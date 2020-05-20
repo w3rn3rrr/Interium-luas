@@ -47,7 +47,7 @@ Types of images:
 
 change the volume: rerender all "wav" files from **"INTERIUM\\CSGO\\FilesForLUA\\KillImage-w3rn3r"** with min volume
 
-change the sounds: u must open lua in notpad (or smth) and chenge this paths
+change the sounds: u must open lua in notpad (or smth) and change this paths
 
 ![code](https://i.imgur.com/qrpWCFk.png "heh")
 
