@@ -7,7 +7,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 #### Lua plan list
 - [X] Hitmarks system from cooking hack
 - [X] Interwebz spec list (need recoded)
-- [ ] ~~Aimware spec list~~ (already by Kibbi)
+- [X] ~~Aimware spec list~~ (already by Kibbi)
 - [ ] Full customize spec list
     - [ ] Full color customization
     - [ ] Size
