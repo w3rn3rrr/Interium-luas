@@ -10,13 +10,13 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [X] ~~Aimware spec list~~ (already by Kibbi)
 - [ ] Full customize spec list
     - [ ] Full color customization
-    - [ ] Size
-    - [ ] Change the "spec list" text
+    - [X] Size
+    - [X] Change the "spec list" text
     - [ ] Move with mouse
 - [X] Simple Custom velocity graph
 - [X] Health from minectaft (animation) (looks ugly)
 - [ ] ~~Integration in obs system & "donations reaction"~~ 
-- [ ] Ui minecraft. 
+- [X] Ui minecraft. 
 - [ ] pack presets lua for newbie's =]
 
 
