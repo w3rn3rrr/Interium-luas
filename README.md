@@ -1,5 +1,3 @@
-last update - 27.09.21
-
 # Interium - luas
 
 #### INTERIUM - is?
