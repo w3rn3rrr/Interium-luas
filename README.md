@@ -8,7 +8,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [X] Hitmarks system from cooking hack
 - [X] Interwebz spec list (need recoded)
   - [X] updated to original (with detected players system) 
-- [X] ~~Aimware spec list~~ (already by Kibbi)
+- [X] ~~Aimware spec list~~ (already by [kibbiwater](https://github.com/KibbeWater/Interium-Luas))
 - [ ] Full customize spec list
     - [ ] Full color customization
     - [X] Size
