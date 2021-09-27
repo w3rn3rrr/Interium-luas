@@ -1,3 +1,5 @@
+last update - 27.09.21
+
 # Interium - luas
 
 #### INTERIUM - is?
@@ -7,6 +9,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 #### Lua plan list
 - [X] Hitmarks system from cooking hack
 - [X] Interwebz spec list (need recoded)
+  - [X] updated to original (with detected players system) 
 - [X] ~~Aimware spec list~~ (already by Kibbi)
 - [ ] Full customize spec list
     - [ ] Full color customization
