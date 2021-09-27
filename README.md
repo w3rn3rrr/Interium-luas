@@ -8,7 +8,6 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [X] Hitmarks system from cooking hack
 - [X] Interwebz spec list (need recoded)
   - [X] updated to original (with detected players system) 
-  ![plokiuwad](https://cdn.discordapp.com/attachments/891470245016002591/892011976438472724/unknown.png "yess")
 - [X] ~~Aimware spec list~~ (already by [kibbiwater](https://github.com/KibbeWater/Interium-Luas))
 - [ ] Full customize spec list
     - [ ] Full color customization
@@ -43,6 +42,9 @@ Types of images:
 - each kill shown at the bottom of your screen (turned off if desired in the menu)
 
  ![everykill](https://i.imgur.com/3OpYkeh.png "heh")
+ 
+ ### Spec list (interwebz)
+  ![plokiuwad](https://cdn.discordapp.com/attachments/891470245016002591/892011976438472724/unknown.png "yess")
  
 #### Questions 
 -How i can change the sound or volume ?
