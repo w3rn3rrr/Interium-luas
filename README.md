@@ -1,7 +1,7 @@
 # Interium - luas
 
 #### INTERIUM - is?
-Its software for Counter Strike Global Offensive with the biggest easy lua system. 
+Is it software for Counter Strike Global Offensive with the biggest lua system. 
 [details...](https://github.com/N1ceL/Interium_LUA_API)
 
 #### Lua plan list
@@ -21,7 +21,7 @@ Its software for Counter Strike Global Offensive with the biggest easy lua syste
 - [ ] pack presets lua for newbie's =]
 
 
-### Explanation and help for several
+### Explanation and help.
 
 #### Hitmarks lua
 In kill time u can see orher images. 
