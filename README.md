@@ -43,7 +43,7 @@ Types of images:
 
  ![everykill](https://i.imgur.com/3OpYkeh.png "heh")
  
- ### Spec list (interwebz)
+ ### Spec list (interwebz, privat version)
   ![plokiuwad](https://cdn.discordapp.com/attachments/891470245016002591/892011976438472724/unknown.png "yess")
  
 #### Questions 
