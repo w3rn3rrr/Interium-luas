@@ -1,34 +1,12 @@
--- code are trash :/
 
--- change the font here
-URLDownloadToFile("https://cdn.discordapp.com/attachments/377022549361426432/707182823169065010/visitor2.ttf", GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\visitor2.ttf")
-local CustomFont =   GetAppData() .. "\\INTERIUM\\CSGO\\FilesForLUA\\visitor2.ttf"
-
-
-local FontInited = false
-function InitFont()
-	if (not FontInited) then
-		Render.LoadFont("FontNameLol", CustomFont, 32)
-		FontInited = true
-	end
-end
-
-
--- Init Menu
-Menu.Spacing()
-Menu.Separator()
-Menu.Spacing()
-Menu.Text("                           SPECTATOR LIST");
-Menu.Text("                                by w3rn3r");
-Menu.SliderFloat("X Position", "SSliderXpos", 1, Globals.ScreenWidth(), "%.0f", 150)
-Menu.ColorPicker("Main color", "McolorSL", 132, 125, 209, 255)
-
-
-
---inited lol
-Menu.Text("                                  TEST");
 Menu.Checkbox("Spectator List", "bSpec", true)
-Menu.SliderFloat("X Position", "POStext", -150, Globals.ScreenWidth(), "%.1f", 150)
+Menu.SliderFloat("X Pos", "SSliderXpos", -150, Globals.ScreenWidth(), "%.0f", 150)
+Menu.SliderFloat("Y POS", "SSliderYpos", -1000, Globals.ScreenWidth(), "%.1f", 100)
+Menu.ColorPicker("Main color", "McolorSL", 132, 125, 209, 255)
+Menu.ColorPicker("Main color", "ScolorSL", 132, 125, 209, 255)
+
+
+
 
 local fakeNames = {}
 local you = {}
@@ -41,17 +19,8 @@ local ISurfaceFontInd = 0
 local FontName = "Verdana"
 local FontName2 = "Smallest Pixel-7"
 local FontInited = false
--- Init Offsets
-local hObserverTarget_Offset = Hack.GetOffset("DT_BasePlayer", "m_hObserverTarget")
-local iObserverMode_Offset = Hack.GetOffset("DT_BasePlayer", "m_iObserverMode")
 
 
--- Init Spec Info
-local SpecCount = 0
-local SpecNames = {  }
-
-
---font
 function InitFont()
     if (not FontInited) then
         if (ISurfaceFont == 0) then
@@ -63,21 +32,6 @@ function InitFont()
             ISurfaceFontSpec = ISurface.CreateFont_()
             ISurface.SetFontGlyphSet(ISurfaceFontSpec, FontName, 13, 560, 0, 0, 0x200, 0, 0)
         end
-		
-        if (ISurfaceFontTime == 0) then
-            ISurfaceFontTime = ISurface.CreateFont_()
-            ISurface.SetFontGlyphSet(ISurfaceFontTime, FontName, 20, 600, 0, 0, 0x200, 0, 0)
-        end
-
-        if (ISurfaceFontEsp == 0) then
-            ISurfaceFontEsp = ISurface.CreateFont_()
-            ISurface.SetFontGlyphSet(ISurfaceFontEsp, FontName2, 11, 400, 0, 0, 0x200, 0, 0)
-        end
-		
-        if (ISurfaceFontHealthbar == 0) then
-            ISurfaceFontHealthbar = ISurface.CreateFont_()
-            ISurface.SetFontGlyphSet(ISurfaceFontHealthbar, FontName2, 10, 400, 0, 0, 0x200, 0, 0)
-        end
 
         if (ISurfaceFontInd == 0) then
             ISurfaceFontInd = ISurface.CreateFont_()
@@ -88,273 +42,289 @@ function InitFont()
     end
 end
 
-
-
-
--- Render
-function RenderSpecList()
-    
+local function RenderESP()
     InitFont()
     fakeNames = {}
 	you = {}
-
-
-    local MidposY = Globals.ScreenHeight() / 2
-    local XposSL = Menu.GetFloat("SSliderXpos");
-
-
-    local owo = 10
-    local color = Color.new(255, 255, 255, 255)
-
-    --upper quad 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 31, MidposY - 6) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 134, MidposY - 6) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 111, MidposY + 17) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 54, MidposY + 17) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
-    
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 30, MidposY - 4) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 130, MidposY - 4) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 110, MidposY + 15) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 50, MidposY + 15)
-    Render.PolyFilled(4, Color.new(58, 57, 58, 255), true, 2)
-
-    Render.Text("SPECTATOR LIST", Globals.ScreenWidth() - XposSL - 13, MidposY, 12, Menu.GetColor("McolorSL"), false, true, "FontNameLol")
-    --1
-    for i = 1, #fakeNames do
-        local isYou = you[i]
-
-    if i == 1 then 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 17) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 17)
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 38) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 38)
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
-
-    --spec1 darks
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 17)
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 17) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 35) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 35)
-    Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2)
-    end
-
-
-    if i == 2 then    
-        --spec2  
-        Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 37) 
-        Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 37)
-        Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 58) 
-        Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 58)
-        Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
-        --spec2 white
-        Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 109, MidposY + 37) 
-        Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 37)
-        Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 56) 
-        Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 109, MidposY + 56)
-        Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
-    end
-
-
-
-    if i == 3 then 
-    --spec3  
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 57) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 57)
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 78) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 78)
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
-    --spec3 darks
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 57)
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 57) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 75) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 75)
-    Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2)
-
-    end
-
-    if i == 4 then 
-    --spec4  
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 77) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 77) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 98) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 98) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
-    --spec4 white 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 109, MidposY + 77) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 77) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 95) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 109, MidposY + 95) 
-    Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
-    end 
-    
-
-    if i == 5 then 
-    --spec5  
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 97) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 97) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 118) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 118) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
-    --spec5 darks
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 97) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 97) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 115) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 115) 
-    Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2) 
-    end
-
- 
-    if i == 6 then 
-    --spec6 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 117) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 117) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 138) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 138) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
-    --spec6 white 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 109, MidposY + 117) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 117) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 135) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 109, MidposY + 135) 
-    Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
+    for i = 1, 64 do
+        local pEnt = IEntityList.GetPlayer(i)
+        if not pEnt then goto skip end
+        if pEnt:IsAlive() then
+            BuildSpecList(i)
         end
+        ::skip::
+    end
     
    
-    if i == 7 then 
-    --spec7  
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 157) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 157) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 178) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 178) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
-    --spec7 darks
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 157) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 157) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 109, MidposY + 1 + 175) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 175) 
-    Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2) 
+    local YposSL = Menu.GetFloat("SSliderYpos");
+    local MidposY = Globals.ScreenHeight() / 2 + YposSL
+    local XposSL = Menu.GetFloat("SSliderXpos");
+
+    --wtv
+    if Menu.GetBool("bSpec") then
+        local color = Color.new(255, 255, 255, 255)
+
+        Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 31, MidposY - 6) 
+        Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 194, MidposY - 6) 
+        Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 171, MidposY + 17) 
+        Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 54, MidposY + 17) 
+        Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
+        
+        Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 30, MidposY - 4) 
+        Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 190, MidposY - 4) 
+        Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 170, MidposY + 15) 
+        Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 50, MidposY + 15)
+        Render.PolyFilled(4, Color.new(58, 57, 58, 255), true, 2)
+
+        Render.Text("SPECTATOR LIST", Globals.ScreenWidth() - XposSL + 15, MidposY, 12, Menu.GetColor("McolorSL"), false, true, FontName)
+    
+        for i = 1, #fakeNames do
+            local isYou = you[i]
+            local POStest = Menu.GetFloat("POStext")
+			if isYou then 
+                color = Menu.GetColor("ScolorSL")
+            else 
+                color = Color.new(255,255,255,255) 
             end
 
-        --8
-    if i == 8 then 
-    --spec8  
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 177) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 177) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 198) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 198) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
-    --spec8 white 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 109, MidposY + 177) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 177) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 195) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 109, MidposY + 195) 
-    Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
-        end    
-    
-    if i == 9 then 
-    --spec9
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 197) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 197) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 218) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 218) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
-    --spec9 darks
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 109, MidposY + 197) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 197) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 215) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 109, MidposY + 215) 
-    Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2) 
+
+            if i == 1 then 
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 17) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 17)
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 38) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 38)
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
+            
+                --spec1 darks
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 17)
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 17) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 35) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 35)
+                Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2)
+                end
+                if i == 2 then    
+                    --spec2  
+                    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 37) 
+                    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 37)
+                    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 58) 
+                    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 58)
+                    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
+                    --spec2 white
+                    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 169, MidposY + 37) 
+                    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 37)
+                    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 56) 
+                    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 169, MidposY + 56)
+                    Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
+                end
+            
+            
+            
+                if i == 3 then 
+                --spec3  
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 57) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 57)
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 78) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 78)
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2)
+                --spec3 darks
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 57)
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 57) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 75) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 75)
+                Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2)
+            
+                end
+            
+                if i == 4 then 
+                --spec4  
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 77) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 77) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 98) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 98) 
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
+                --spec4 white 
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 169, MidposY + 77) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 77) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 95) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 169, MidposY + 95) 
+                Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
+                end 
+                
+            
+                if i == 5 then 
+                --spec5  
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 97) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 97) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 118) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 118) 
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
+                --spec5 darks
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 97) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 97) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 115) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 115) 
+                Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2) 
+                end
+            
+             
+                if i == 6 then 
+                --spec6 
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 117) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 117) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 138) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 138) 
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
+                --spec6 white 
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 169, MidposY + 117) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 117) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 135) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 169, MidposY + 135) 
+                Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
+                    end
+                
+               
+                if i == 7 then 
+                --spec7  
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 137) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 137) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 158) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 158) 
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
+                --spec7 darks
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 137) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 137) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL + 169, MidposY + 1 + 155) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL - 52, MidposY + 1 + 155) 
+                Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2) 
+                    end
+            
+            
+                if i == 8 then 
+                --spec8  
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 157) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 157) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 178) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 178) 
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
+                --spec8 white 
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 169, MidposY + 157) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 157) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 175) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 169, MidposY + 175) 
+                Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
+                    end    
+                
+                if i == 9 then 
+                --spec9
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 177) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 177) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 198) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 198) 
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
+                --spec9 darks
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 169, MidposY + 177) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 177) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 195) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 169, MidposY + 195) 
+                Render.PolyFilled(4, Color.new(46, 45, 46, 255), true, 2) 
+                    end
+            
+                if i == 10 then 
+                --spec10 
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 171, MidposY + 197) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 197) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 218) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 171, MidposY + 218) 
+                Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
+                --spec10 white 
+                Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 169, MidposY + 197) 
+                Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 197) 
+                Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 215) 
+                Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 169, MidposY + 215) 
+                Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
+                end
+
+                Render.Text(tostring(fakeNames[i]), Globals.ScreenWidth() - XposSL - 40, MidposY + 1 + 20 * i, 12, color, false, true, FontName)
+
+               
+
         end
-
-    if i == 10 then 
-    --spec10 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 111, MidposY + 217) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 54, MidposY + 217) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 54, MidposY + 238) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 111, MidposY + 238) 
-    Render.PolyFilled(4, Color.new(79, 78, 79, 255), true, 2) 
-    --spec10 white 
-    Render.AddPoly(0, Globals.ScreenWidth() - XposSL + 109, MidposY + 217) 
-    Render.AddPoly(1, Globals.ScreenWidth() - XposSL - 52, MidposY + 217) 
-    Render.AddPoly(2, Globals.ScreenWidth() - XposSL - 52, MidposY + 235) 
-    Render.AddPoly(3, Globals.ScreenWidth() - XposSL + 109, MidposY + 235) 
-    Render.PolyFilled(4, Color.new(70, 68, 70, 255), true, 2) 
-        end
-
-        if isYou then 
-            color = Color.new(91,145,248,255) 
-          else
-             color = Color.new(255,255,255,255) 
-        end
-
-    Render.Text(fakeNames[i], Globals.ScreenWidth() - XposSL - 40, MidposY + 1 + 20 * i, 12, color, false, true, ISurfaceFontSpec)
-
     end
+
+
 end
-Hack.RegisterCallback("PaintTraverse", RenderSpecList)
+Hack.RegisterCallback("PaintTraverse", RenderESP)
 
 function BuildSpecList(TargetIndex)
-    if (TargetIndex == -1) then return end
+    if (TargetIndex == -1) then
+        return
+    end
 
     for i = 1, 64 do
         if (i == IEngine.GetLocalPlayer()) then
             goto continue
         end
- 
-     -- player looking
-     local Player = IEntityList.GetPlayer(i)
-     if (not Player or Player:GetClassId() ~= 40 or Player:IsAlive()) then
-         goto continue
-     end
- 	
 
-    local PlayerInfo = CPlayerInfo.new()
-    if (not Player:GetPlayerInfo(PlayerInfo)) then
-        goto continue
-    end
+        -- player looking
+        local Player = IEntityList.GetPlayer(i)
+        if (not Player or Player:GetClassId() ~= 40 or Player:IsAlive()) then
+            goto continue
+        end
+		
+        if Player:IsDormant() then
+			goto continue
+		end
+        local PlayerInfo = CPlayerInfo.new()
+        if (not Player:GetPlayerInfo(PlayerInfo)) then
+            goto continue
+        end
 
-    local PlayerName = PlayerInfo.szName
-    if (PlayerName == "GOTV") then
-        goto continue
-    end
+        local PlayerName = PlayerInfo.szName
+        if (PlayerName == "GOTV") then
+            goto continue
+        end
 
 
-        -- Target Playing
-        local TargetObserver = Player:GetPropInt(hObserverTarget_Offset) -- int bc need adress
+        -- target playing
+        local TargetObserver = Player:GetPropInt(obsTargetOffset) -- int bc need adress
         if (TargetObserver <= 0) then
             goto continue
         end
 
-        local TargetHandle = IEntityList.GetClientEntityFromHandleA(TargetObserver) 
-        local Target = IEntityList.ToPlayer(TargetHandle) 
-           if (not Target or Target:GetClassId() ~= 40 or not Target:IsAlive()) then
+        local TargetHandle = IEntityList.GetClientEntityFromHandleA(TargetObserver)
+        local Target = IEntityList.ToPlayer(TargetHandle)
+        if (not Target or Target:GetClassId() ~= 40 or not Target:IsAlive()) then
             goto continue
         end
 
-        -- Build
+        local TargetInfo = CPlayerInfo.new()
+        if (not Target:GetPlayerInfo(TargetInfo)) then
+            goto continue
+        end
+
+
+        -- build
         if (TargetIndex ~= Target:GetIndex()) then
             goto continue
         end
-        local PlayerObserverMode = Player:GetPropInt(iObserverMode_Offset)
-  
+        local PlayerObserverMode = Player:GetPropInt(obsModeOffset)
+        
         if (PlayerObserverMode == 4 or PlayerObserverMode == 5) or true then
-            local isYou = Target:GetIndex() == IEngine.GetLocalPlayer()
+		local isYou = Target:GetIndex() == IEngine.GetLocalPlayer()
             table.insert(you, isYou)
             table.insert(fakeNames, PlayerInfo.szName .. " -> " .. TargetInfo.szName)
         end
 
-
         ::continue::
     end
 end
-
 
 function FindTarget(Player)
     -- Local Looking
     if (not Player or Player:GetClassId() ~= 40 or Player:IsAlive() or Player:IsDormant()) then
         return -1
     end
+    
 
     -- Target Playing
     local TargetObserver = Player:GetPropInt(obsTargetOffset) -- int bc need adress
